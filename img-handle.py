@@ -1,4 +1,7 @@
 
+'''
+单张图片二值化 灰度处理demo
+'''
 import tesserocr 
 from PIL import Image 
 import os

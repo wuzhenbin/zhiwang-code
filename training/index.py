@@ -10,11 +10,11 @@ HJLP J73W 461/5 SXEX HNCT
 WURN P208 BVFU 08W]. 47516
 6ULV JWZ 0560 KDYE N9M9
 
-tesseract code.font.exp1.png result -l eng+font
-
+tesseract code.font.exp1.png result -l font
 '''
 
 import PIL.Image as Image
+from PIL import Image 
 import os, sys
 
 
@@ -35,6 +35,18 @@ def train_before():
         for y in range(4):
             item = img_lis.pop(0)
             fromImage = Image.open(os.getcwd()+'\\imgs\\'+item)
+            fromImage = fromImage.convert('L') 
+            threshold = 135 
+            table = [] 
+            for i in range(256): 
+                if i < threshold: 
+                    table.append(0)
+
+                else: 
+                    table.append(1)
+
+            fromImage = fromImage.point(table,'1') 
+
             toImage.paste(fromImage, (x*img_ex_width, y*img_ex_height))
 
     # toImage.show()
@@ -64,6 +76,10 @@ def delete_file(target):
         if item in lis:
             os.unlink(cwd+'\\{}'.format(item))
 
+def train_test():
+
+    pass
+
 
 def traning_after():
     # 写文件font_properties：
@@ -88,6 +104,7 @@ def main():
     # 3 训练完获取font.traineddata 
     # traning_after()
     # 4 将font.traineddata 文件放入 Tesseract-OCR的tessdata文件里面 C:\Program Files (x86)\Tesseract-OCR\tessdata
+    train_test()
     pass
 
     
