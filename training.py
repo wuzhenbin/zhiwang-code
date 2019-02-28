@@ -4,7 +4,7 @@ from PIL import Image
 import os
 
 path = os.getcwd() + '\\imgs'
-file_lis = os.listdir(path)[:7]
+file_lis = os.listdir(path)
 
 for item in file_lis:
 	image = Image.open('./imgs/{}'.format(item)) 
